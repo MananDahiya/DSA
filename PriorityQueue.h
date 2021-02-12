@@ -59,13 +59,13 @@ int delete(priority_queue* pqp){
 	if(empty(pqp)){
 		puts("\nUnderflow! Cannot delete further elements");
 	}
+	else if(pqp->front == pqp->rear){
+		val = pqp->arr[pqp->front];
+		initialize(pqp);
+	}
 	else{
 		val = pqp->arr[pqp->front];
 		pqp->front = (pqp->front + 1) % MAX;
-	}
-	
-	if(pqp->front > pqp->rear){
-		initialize(pqp);
 	}
 	return val;
 }
