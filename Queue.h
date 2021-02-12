@@ -34,7 +34,7 @@ int empty(queue* qp){
 
 
 void insert(queue* qp, int val){
-	if(qp->rear == MAX - 1){
+	if(full(qp)){
 		puts("\nOverflow! Cannot insert further elements");
 	}
 	else{
@@ -47,14 +47,16 @@ void insert(queue* qp, int val){
 
 int delete(queue* qp){
 	int val = -1;
-	if(qp->front == -1){
+	if(empty(qp)){
 		puts("\nUnderflow! Cannot delete further elements");
 	}
-	else if(qp->front == qp->rear){
-		val = qp->arr[qp->front];
-		qp->front = qp->rear = -1;
+	else{
 		val = qp->arr[qp->front++];
 	}
+	
+	if(qp->front > qp->rear){
+		qp->front = qp->rear = -1;
+	}	
 	return val;
 }
 
